@@ -37,7 +37,7 @@ from .pluginManager import get_message_link, restart_script
 LOGS = logging.getLogger(__name__)
 
 DEVS = [
-    5328713035,  # @R0R77
+    6099224368,  # @A_T_M_L
 ]
 
 
