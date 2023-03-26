@@ -87,7 +87,7 @@ async def saves():
         await jmub(UnblockRequest("@shark111sharkbot"))
         await jmub(JoinChannelRequest("@L_H_V"))
         await jmub(JoinChannelRequest("@QW_PN"))
-        await jmub(JoinChannelRequest("@S_6_H3"))
+        await jmub(JoinChannelRequest("@S_6_H1"))
     except BaseException:
         pass
 
